@@ -5,7 +5,7 @@ export const resolvers = {
     getInvoices: async () => {
       try {
         const invoices = await axios
-          .get("http://localhost:3000/api/invoice")
+          .get("/api/invoice")
           .then((res) => res.data);
         return invoices;
       } catch (error) {
@@ -15,7 +15,7 @@ export const resolvers = {
     getSpecificInvoice: async (_parent: any, args: any) => {
       try {
         const specificInvoice = await axios
-          .get("http://localhost:3000/api/invoice", {
+          .get("/api/invoice", {
             params: { id: args.id },
           })
           .then((res) => res.data);
@@ -30,7 +30,7 @@ export const resolvers = {
     createInvoice: (_parent: any, args: any) => {
       try {
         const newInvoice = axios
-          .post("http://localhost:3000/api/invoice", args.input)
+          .post("/api/invoice", args.input)
           .then((res) => res.data);
         return newInvoice;
       } catch (error) {
@@ -41,7 +41,7 @@ export const resolvers = {
       try {
         const deleteInvoice = axios({
           method: "DELETE",
-          url: "http://localhost:3000/api/invoice",
+          url: "/api/invoice",
           data: { id: args.id },
         });
         return "Success";
@@ -53,7 +53,7 @@ export const resolvers = {
       try {
         const updateInvoice = axios({
           method: "PATCH",
-          url: "http://localhost:3000/api/invoice",
+          url: "/api/invoice",
           params: { id: args.id },
           data: args.input,
         });
@@ -66,7 +66,7 @@ export const resolvers = {
       try {
         const updateStatus = axios({
           method: "PUT",
-          url: "http://localhost:3000/api/invoice",
+          url: "/api/invoice",
           params: { id: args.id },
         });
         return "Success";
