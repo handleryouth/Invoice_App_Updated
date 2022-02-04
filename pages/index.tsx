@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   const filterItem = useSelector((state: RootState) => state.filter);
 
   useEffect(() => {
-    if (filterItem.length > 0 && data) {
+    if (filterItem.length && data) {
       const result = (data.getInvoices as ResponseData[]).filter((item) => {
         return filterItem.includes(item.status);
       });
@@ -32,11 +32,11 @@ const Home: NextPage = () => {
       <FormContainer />
       <div className="min-h-full h-[100vh]">
         <InvoiceTitle
-          itemLength={loading ? 0 : (data.getInvoices as ResponseData[]).length}
+          itemLength={!data ? 0 : (data.getInvoices as ResponseData[]).length}
         />
 
         <div className="px-4">
-          {filteredItem ? (
+          {!loading ? (
             filteredItem.map((invoice, index) => {
               return (
                 <InvoicesContainer

@@ -1,12 +1,13 @@
-import axios from "axios";
+import { InvoiceSchema } from "models";
+import { Types } from "mongoose";
+import dbConnect from "lib/dbConnect";
 
 export const resolvers = {
   Query: {
     getInvoices: async () => {
       try {
-        const invoices = await axios
-          .get("/api/invoice")
-          .then((res) => res.data);
+        await dbConnect();
+        const invoices = await InvoiceSchema.find();
         return invoices;
       } catch (error) {
         throw error;
@@ -14,11 +15,10 @@ export const resolvers = {
     },
     getSpecificInvoice: async (_parent: any, args: any) => {
       try {
-        const specificInvoice = await axios
-          .get("/api/invoice", {
-            params: { id: args.id },
-          })
-          .then((res) => res.data);
+        await dbConnect();
+        const specificInvoice = await InvoiceSchema.find({
+          _id: new Types.ObjectId(args.id),
+        });
         return specificInvoice;
       } catch (error) {
         throw error;
@@ -27,48 +27,47 @@ export const resolvers = {
   },
 
   Mutation: {
-    createInvoice: (_parent: any, args: any) => {
+    createInvoice: async (_parent: any, args: any) => {
       try {
-        const newInvoice = axios
-          .post("/api/invoice", args.input)
-          .then((res) => res.data);
+        await dbConnect();
+        const newInvoice = await InvoiceSchema.create(args.input);
         return newInvoice;
       } catch (error) {
         throw error;
       }
     },
-    deleteInvoice: (_parent: any, args: any) => {
+    deleteInvoice: async (_parent: any, args: any) => {
       try {
-        const deleteInvoice = axios({
-          method: "DELETE",
-          url: "/api/invoice",
-          data: { id: args.id },
+        await dbConnect();
+        await InvoiceSchema.deleteOne({
+          _id: new Types.ObjectId(args.id),
         });
         return "Success";
       } catch (error) {
         throw error;
       }
     },
-    updateInvoice: (_parent: any, args: any) => {
+    updateInvoice: async (_parent: any, args: any) => {
       try {
-        const updateInvoice = axios({
-          method: "PATCH",
-          url: "/api/invoice",
-          params: { id: args.id },
-          data: args.input,
-        });
+        await dbConnect();
+        await InvoiceSchema.updateOne(
+          { _id: new Types.ObjectId(args.id) },
+          { $set: args.input }
+        );
         return "Success";
       } catch (error) {
         throw error;
       }
     },
-    updatedStatus: (_parent: any, args: any) => {
+    updatedStatus: async (_parent: any, args: any) => {
       try {
-        const updateStatus = axios({
-          method: "PUT",
-          url: "/api/invoice",
-          params: { id: args.id },
-        });
+        await dbConnect();
+        await InvoiceSchema.updateOne(
+          {
+            _id: new Types.ObjectId(args.id),
+          },
+          { $set: { status: "Paid" } }
+        );
         return "Success";
       } catch (error) {
         throw error;

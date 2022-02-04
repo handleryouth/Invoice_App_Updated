@@ -10,10 +10,10 @@ const Input = ({
   defaultValue,
 }: InputProps) => {
   return (
-    <div className={`my-2 ${className}`}>
+    <div className={`my-2 ${className && className}`}>
       <label htmlFor="input_label">{label}</label>
       <input
-        className="w-full p-2 text-black mt-1 rounded"
+        className="w-full mt-1 pl-0 border-x-0 border-t-0 bg-transparent text-white border-white focus:border-white focus:ring-0"
         type={type}
         defaultValue={defaultValue}
         value={value}

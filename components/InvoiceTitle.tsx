@@ -18,12 +18,12 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center ">
-      <div className="text-white">
+    <div className="flex flex-col sm:flex-row justify-between items-center   ">
+      <div>
         <h1 className="text-3xl mt-4 font-bold mb-3 text-center sm:text-left ">
           Invoices
         </h1>
-        <p>There are {itemLength} total invoices</p>
+        <p className="text-[#888eb0]">There are {itemLength} total invoices</p>
       </div>
 
       <div className="flex items-center justify-center flex-col sm:flex-row mt-4">
@@ -34,7 +34,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
               setFilterDropdown((prevState) => !prevState);
             }}
           >
-            <p className="mr-4 text-white">filter by status</p>
+            <p className="mr-4">filter by status</p>
             <Image
               src="/assets/icon-arrow-down.svg"
               className={`${
