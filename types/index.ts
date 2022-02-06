@@ -76,3 +76,7 @@ export interface DetailHeaderProps {
 export interface InvoiceTitleProps {
   itemLength: number;
 }
+
+export interface FormContainerProps extends Omit<ResponseData, "status"> {
+  edit: Boolean;
+}

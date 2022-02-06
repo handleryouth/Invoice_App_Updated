@@ -12,7 +12,7 @@ const InvoicesContainer = ({
   const router = useRouter();
   return (
     <div
-      className="grid grid-cols-2 md:grid-cols-5   bg-[#1e2139]  px-2 py-4 md:px-0 md:py-8 rounded-md text-white my-8 border-2 border-[#1e2139] hover:border-[#7c5dfa] shadow-none transition-colors"
+      className="grid grid-cols-2 md:grid-cols-5    dark:bg-[#1e2139]  px-2 py-4 md:px-0 md:py-8 rounded-md dark:text-white text-[#888eb0] my-8 border-2 border-slate-400 dark:border-[#1e2139] hover:border-[#7c5dfa] shadow-none transition-colors"
       onClick={() => {
         router.push(`/invoice/${invoice_id}`);
       }}

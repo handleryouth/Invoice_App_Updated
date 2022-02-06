@@ -51,29 +51,29 @@ const DetailHeader = ({ status, id }: DetailHeaderProps) => {
           }}
         />
       </Portal>
-      <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-8 px-4 py-6 rounded-md bg-[#1e2139]">
+      <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-8 px-4 py-6 rounded-md dark:bg-[#1e2139] border-2 border-slate-400 dark:border-transparent ">
         <div className="flex items-center">
-          <p className="text-white mr-4">Status</p>
+          <p className="dark:text-white mr-4">Status</p>
           <StatusBadge status={status} />
         </div>
 
         <div className="mt-4 sm:mt-0">
           <button
-            className="text-white px-5 py-3 mr-4 rounded-full  bg-[#252945]"
+            className="dark:text-white px-5 py-3 mr-4 rounded-full  dark:bg-[#252945] border-2 border-[#252945] dark:border-transparent"
             onClick={() => dispatch(toggleSidebarTrue())}
           >
             Edit
           </button>
           {status === ("Pending" || "Draft") ? (
             <button
-              className="text-white  px-5 py-3 rounded-full  bg-[#7c5dfa]"
+              className="dark:text-white  px-5 py-3 rounded-full  dark:bg-[#7c5dfa] border-2 border-[#7c5dfa] dark:border-transparent"
               onClick={handleMarkAsPaid}
             >
               Mark as Paid
             </button>
           ) : (
             <button
-              className="text-white  px-5 py-3 rounded-full  bg-[#ec5757]"
+              className="dark:text-white  px-5 py-3 rounded-full  dark:bg-[#ec5757] border-2 border-[#ec5757] dark:border-transparent"
               onClick={() => setShowModal(true)}
             >
               Delete

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Dropdown from "./Dropdown";
 import { format } from "date-fns";
 import Input from "./Input";
-import { CheckTotalParams, ResponseData } from "types";
+import { CheckTotalParams, FormContainerProps, ResponseData } from "types";
 import { useMutation } from "@apollo/client";
 import {
   CREATE_INVOICE,
@@ -16,10 +16,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebarFalse } from "features/sidebar";
 import { RootState } from "features";
-
-interface FormContainerProps extends Omit<ResponseData, "status"> {
-  edit: Boolean;
-}
 
 const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
   const [createInvoice] = useMutation(edit ? UPDATE_INVOICE : CREATE_INVOICE);
@@ -58,8 +54,6 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
       ? { ...rest, payment_term: rest.payment_term || "1" }
       : inputBoilerplate
   );
-
-  console.log(inputTemplate.payment_term);
 
   const handleCheckTotal: CheckTotalParams = useCallback(
     (index: number, type, value) => {
@@ -142,7 +136,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
   return (
     <>
       <div
-        className={`z-20 text-white fixed top-0 ease-in-out duration-700 transition-transform left-0 bg-[#141625]  px-4 py-8 h-screen overflow-y-auto ${
+        className={`z-20 dark:text-white md:border-r-4 md:border-slate-400 fixed top-0 ease-in-out duration-700 transition-transform left-0 bg-white dark:bg-[#141625]  px-4 py-8 h-screen overflow-y-auto ${
           isOpen ? "translate-x-0" : "translate-x-[-9999px]"
         }`}
       >
@@ -325,7 +319,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
           <h3 className="mt-8">Item List</h3>
           <table className="w-full my-8">
             <thead>
-              <tr>
+              <tr className="text-left">
                 <th>Item Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
@@ -412,7 +406,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
               <tr>
                 <td colSpan={4} className="pt-8 pb-4">
                   <button
-                    className="flex items-center w-full justify-center py-3 bg-[#373b53] rounded-full"
+                    className="flex items-center w-full justify-center py-3 border-2 border-[#373b53] dark:border-transparent dark:bg-[#373b53] rounded-full"
                     onClick={() => {
                       setInputTemplate((draft) => {
                         void draft.items!.push({
@@ -431,17 +425,17 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                       height="20px"
                       layout="fixed"
                     />
-                    <span>Add New Item</span>
+                    <span className="ml-3">Add New Item</span>
                   </button>
                 </td>
               </tr>
             </tfoot>
           </table>
 
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
             <button
               type="reset"
-              className="bg-[#373b53] px-4 py-3 rounded-full"
+              className="dark:bg-[#373b53] border-2 border-[#373b53] dark:border-transparent px-4 py-3 rounded-full"
               onClick={() => {
                 setInputTemplate(edit ? { ...rest } : inputBoilerplate);
                 dispatch(toggleSidebarFalse());
@@ -450,17 +444,17 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
               Discard
             </button>
 
-            <div className="flex items-center">
+            <div className="flex items-center mt-4 sm:mt-0">
               <button
                 type="reset"
-                className="px-4 py-3 bg-[#373b53] rounded-full mr-3"
+                className="px-2 sm:px-4 py-3 dark:bg-[#373b53] border-2 border-[#373b53] dark:border-transparent rounded-full mr-3"
                 onClick={() => handleCreateInvoice("Draft")}
               >
                 Save as Draft
               </button>
               <button
                 type="reset"
-                className="px-4 py-3 bg-[#7c5dfa] rounded-full  "
+                className="px-2 sm:px-4 py-3 dark:bg-[#7c5dfa] border-2 border-[#7c5dfa] dark:border-transparent rounded-full  "
                 onClick={() => handleCreateInvoice("Pending", _id)}
               >
                 Save & Send

@@ -18,7 +18,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center   ">
+    <div className="flex flex-col sm:flex-row justify-between items-center  px-4 ">
       <div>
         <h1 className="text-3xl mt-4 font-bold mb-3 text-center sm:text-left ">
           Invoices
@@ -67,7 +67,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
         </div>
 
         <button
-          className="bg-[#7c5dfa] flex items-center ml-4 py-3 px-3 rounded-full text-white"
+          className="bg-[#7c5dfa] flex items-center ml-4 mt-4  sm:mt-0 py-3 px-3 rounded-full text-white"
           onClick={() => {
             dispatch(toggleSidebarTrue());
           }}

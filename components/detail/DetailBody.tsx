@@ -16,7 +16,7 @@ const DetailBody = ({
 }: Omit<ResponseData, "status">) => {
   return (
     <>
-      <div className="text-white p-4sm:p-8 text-sm">
+      <div className="dark:text-white p-4 sm:p-8 text-sm">
         <div className="flex flex-col sm:flex-row sm:justify-between my-8 ">
           <div>
             <p className="mb-2">#{_id.slice(0, 6)}</p>
@@ -68,7 +68,7 @@ const DetailBody = ({
         </div>
 
         <table className="w-full table-auto rounded-md overflow-hidden ">
-          <thead className="bg-[#252945] h-20 ">
+          <thead className="dark:bg-[#252945] h-20 border-2 border-slate-400 dark:border-transparent ">
             <tr>
               <th className="text-center">Item Name</th>
               <th className="text-center">QTY.</th>
@@ -84,8 +84,8 @@ const DetailBody = ({
                   <tr key={index}>
                     <td className="py-8 text-center">{item.item_name}</td>
                     <td className="text-center">{item.item_quantity}</td>
-                    <td className="text-center">{item.item_price}</td>
-                    <td className="text-center">{item.item_total}</td>
+                    <td className="text-center">${item.item_price}</td>
+                    <td className="text-center">${item.item_total}</td>
                   </tr>
                 );
               })
@@ -98,12 +98,14 @@ const DetailBody = ({
             )}
           </tbody>
 
-          <tfoot className="bg-black h-24">
+          <tfoot className="dark:bg-black h-24 border-2 border-slate-400 dark:border-transparent">
             <tr>
               <td colSpan={3} className="text-center">
                 Amount Due
               </td>
-              <td className="text-center font-bold   text-2xl">{amount_due}</td>
+              <td className="text-center font-bold   text-2xl">
+                ${amount_due}
+              </td>
             </tr>
           </tfoot>
         </table>

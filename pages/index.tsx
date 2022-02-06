@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
-import ReactLoading from "react-loading";
 import { format } from "date-fns";
+import { useTheme } from "next-themes";
+import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
-import { FormContainer, InvoicesContainer, InvoiceTitle } from "components";
+import {
+  FormContainer,
+  InvoicesContainer,
+  InvoiceTitle,
+  LoadingIndicator,
+} from "components";
 import { ResponseData } from "types";
 import { QUERY_GET_ALL_INVOICES } from "utils";
-import { useSelector } from "react-redux";
 import { RootState } from "features";
 
 const Home: NextPage = () => {
   const { data, loading } = useQuery(QUERY_GET_ALL_INVOICES);
-
   const [filteredItem, setFilteredItem] = useState<ResponseData[]>([]);
 
   const filterItem = useSelector((state: RootState) => state.filter);
@@ -35,7 +39,11 @@ const Home: NextPage = () => {
           itemLength={!data ? 0 : (data.getInvoices as ResponseData[]).length}
         />
 
-        <div className="px-4">
+        <div
+          className={`px-4 ${
+            loading && "h-screen flex items-center justify-center"
+          }`}
+        >
           {!loading ? (
             filteredItem.map((invoice, index) => {
               return (
@@ -54,7 +62,7 @@ const Home: NextPage = () => {
               );
             })
           ) : (
-            <ReactLoading type="bubbles" color="white" height={50} width={50} />
+            <LoadingIndicator />
           )}
         </div>
       </div>

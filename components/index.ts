@@ -10,6 +10,7 @@ export * from "./Dropdown";
 export * from "./Checkbox";
 export * from "./Modal";
 export * from "./Portal";
+export * from "./LoadingIndicator";
 
 export { default as Layout } from "./Layout";
 export { default as InvoiceTitle } from "./InvoiceTitle";
@@ -21,3 +22,4 @@ export { default as Dropdown } from "./Dropdown";
 export { default as Checkbox } from "./Checkbox";
 export { default as Modal } from "./Modal";
 export { default as Portal } from "./Portal";
+export { default as LoadingIndicator } from "./LoadingIndicator";

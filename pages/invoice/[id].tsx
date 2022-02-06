@@ -1,13 +1,16 @@
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
-import { DetailBody, DetailHeader, FormContainer, Portal } from "components";
+import {
+  DetailBody,
+  DetailHeader,
+  FormContainer,
+  LoadingIndicator,
+} from "components";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
-import ReactLoading from "react-loading";
 import { QUERY_GET_SPECIFIC_INVOICE } from "utils";
 import { ResponseData } from "types";
 import omitDeep from "@typescript-runtime-schema/omit-deep";
-import { useState } from "react";
 
 const InvoiceDetail: NextPage = () => {
   const router = useRouter();
@@ -34,14 +37,16 @@ const InvoiceDetail: NextPage = () => {
             src="/assets/icon-arrow-left.svg"
             alt="arrow left"
             width={9}
-            height={10}
+            height={11}
             layout="fixed"
           />
-          <span className="ml-3 text-white">Go Back</span>
+          <span className="ml-3 dark:text-white">Go Back</span>
         </button>
 
         {loading ? (
-          <ReactLoading type="bubbles" color="white" height={50} width={50} />
+          <div className="flex items-center justify-center h-screen">
+            <LoadingIndicator />
+          </div>
         ) : (
           <>
             {(data.getSpecificInvoice as ResponseData[]).map(
