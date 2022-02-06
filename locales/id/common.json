@@ -1,4 +1,5 @@
 {
+  "INVOICE_APP": "Invoice App",
   "INVOICE_TOTAL": "Terdapat {{count}} invoice",
   "INVOICE": "Faktur",
   "FILTER_BY_STATUS": "Filter bersarkan status",

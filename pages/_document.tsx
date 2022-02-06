@@ -15,7 +15,20 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <meta name="description" content="Invoice App" />
+          <meta
+            name="keywords"
+            content="NextJS, Tailwind, React, Redux, graphql, Tony David, handleryouth"
+          />
+          <meta name="language" content="English" />
+          <meta name="language" content="Indonesia" />
+          <meta name="author" content="Tony David" />
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
         <body>
           <div id="modalportal" />
           <Main />

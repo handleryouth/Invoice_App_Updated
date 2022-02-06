@@ -13,6 +13,7 @@ import { QUERY_GET_ALL_INVOICES } from "utils";
 import { RootState } from "features";
 import useTranslation from "next-translate/useTranslation";
 import { useQuery } from "@apollo/client";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   const { data, loading } = useQuery(QUERY_GET_ALL_INVOICES);
@@ -34,6 +35,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>{t("INVOICE_APP")}</title>
+      </Head>
       <FormContainer />
       <div className="min-h-full h-[100vh]">
         <InvoiceTitle

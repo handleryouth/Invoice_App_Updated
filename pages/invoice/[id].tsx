@@ -12,10 +12,10 @@ import { useRouter } from "next/router";
 import { NextPage } from "next/types";
 import omitDeep from "@typescript-runtime-schema/omit-deep";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 const InvoiceDetail: NextPage = () => {
   const router = useRouter();
-
   const { t } = useTranslation("common");
 
   const { data, loading } = useQuery(QUERY_GET_SPECIFIC_INVOICE, {
@@ -28,6 +28,9 @@ const InvoiceDetail: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>{router.query.id} - Invoice App</title>
+      </Head>
       {!loading && <FormContainer {...formData} edit />}
 
       <div className="px-3 py-8 sm:p-4">
