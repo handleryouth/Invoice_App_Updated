@@ -1,18 +1,16 @@
+import { useCallback } from "react";
+import { Dropdown } from "components";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
-import { Dropdown } from "components";
-import useTranslation from "next-translate/useTranslation";
-import { useCallback } from "react";
 
 const Sidebar = () => {
   const router = useRouter();
-  const { t } = useTranslation("common");
   const { theme, setTheme } = useTheme();
 
   const handleChangeLanguage = useCallback(
     (value: string) => {
-      router.push(router.basePath, router.basePath, { locale: value });
+      router.push(router.asPath, router.asPath, { locale: value });
     },
     [router]
   );

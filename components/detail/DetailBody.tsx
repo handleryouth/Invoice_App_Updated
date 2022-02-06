@@ -105,7 +105,7 @@ const DetailBody = ({
               <td colSpan={3} className="text-center">
                 {t("AMOUNT_DUE")}
               </td>
-              <td className="text-center font-bold   text-2xl">
+              <td className="text-center font-bold   text-xl sm:text-2xl">
                 ${amount_due}
               </td>
             </tr>
