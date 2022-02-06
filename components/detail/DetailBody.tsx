@@ -1,5 +1,6 @@
 import { Modal, Portal } from "components";
 import { format } from "date-fns";
+import useTranslation from "next-translate/useTranslation";
 import { ResponseData } from "types";
 
 const DetailBody = ({
@@ -14,6 +15,7 @@ const DetailBody = ({
   sent_to,
   _id,
 }: Omit<ResponseData, "status">) => {
+  const { t } = useTranslation("common");
   return (
     <>
       <div className="dark:text-white p-4 sm:p-8 text-sm">
@@ -34,7 +36,7 @@ const DetailBody = ({
         <div className="grid grid-cols-2 md:grid-cols-3 my-16">
           <div className="flex flex-col">
             <div className="mb-4">
-              <p className="mb-2">Invoice Date</p>
+              <p className="mb-2">{t("INVOICE_DATE")}</p>
               <p className="font-bold">
                 {invoice_date
                   ? format(new Date(invoice_date), "dd-MM-yyyy")
@@ -43,7 +45,7 @@ const DetailBody = ({
             </div>
 
             <div className="mt-4">
-              <p className="mb-2">Payment Due</p>
+              <p className="mb-2">{t("PAYMENT_DUE")}</p>
               <p className="font-bold ">
                 {invoice_due_date
                   ? format(new Date(invoice_due_date), "dd-MM-yyyy")
@@ -53,7 +55,7 @@ const DetailBody = ({
           </div>
 
           <div>
-            <p>Bill to</p>
+            <p>{t("BILL_TO")}</p>
             <p className="font-bold my-4 text-xl">{bill_to}</p>
             <p className="mb-1">{receiver_address.street || "-"}</p>
             <p className="mb-1">{receiver_address.city || "-"}</p>
@@ -62,7 +64,7 @@ const DetailBody = ({
           </div>
 
           <div>
-            <p>Sent To</p>
+            <p>{t("SENT_TO")}</p>
             <p className="font-bold mt-2 text-xl">{sent_to || "-"}</p>
           </div>
         </div>
@@ -70,10 +72,10 @@ const DetailBody = ({
         <table className="w-full table-auto rounded-md overflow-hidden ">
           <thead className="dark:bg-[#252945] h-20 border-2 border-slate-400 dark:border-transparent ">
             <tr>
-              <th className="text-center">Item Name</th>
-              <th className="text-center">QTY.</th>
-              <th className="text-center">Price</th>
-              <th className="text-center">Total</th>
+              <th className="text-center">{t("ITEM_NAME")}</th>
+              <th className="text-center">{t("QUANTITY")}</th>
+              <th className="text-center">{t("PRICE")}</th>
+              <th className="text-center">{t("TOTAL")}</th>
             </tr>
           </thead>
 
@@ -92,7 +94,7 @@ const DetailBody = ({
             ) : (
               <tr>
                 <td colSpan={4} className="text-center py-8 text-xl">
-                  Nothing here.
+                  {t("NOTHING_TO_SHOW")}
                 </td>
               </tr>
             )}
@@ -101,7 +103,7 @@ const DetailBody = ({
           <tfoot className="dark:bg-black h-24 border-2 border-slate-400 dark:border-transparent">
             <tr>
               <td colSpan={3} className="text-center">
-                Amount Due
+                {t("AMOUNT_DUE")}
               </td>
               <td className="text-center font-bold   text-2xl">
                 ${amount_due}

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useTranslation from "next-translate/useTranslation";
 import { InvoiceTitleProps } from "types";
 import Image from "next/image";
 import { toggleSidebarTrue } from "features/sidebar";
@@ -10,7 +11,7 @@ import { RootState } from "features";
 const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
   const dispatch = useDispatch();
   const filterItem = useSelector((state: RootState) => state.filter);
-
+  const { t } = useTranslation("common");
   const [filterDropdown, setFilterDropdown] = useState(false);
 
   const filterOption = useMemo(() => {
@@ -21,9 +22,11 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
     <div className="flex flex-col sm:flex-row justify-between items-center  px-4 ">
       <div>
         <h1 className="text-3xl mt-4 font-bold mb-3 text-center sm:text-left ">
-          Invoices
+          {t("INVOICE")}
         </h1>
-        <p className="text-[#888eb0]">There are {itemLength} total invoices</p>
+        <p className="text-[#888eb0]">
+          {t("INVOICE_TOTAL", { count: itemLength })}
+        </p>
       </div>
 
       <div className="flex items-center justify-center flex-col sm:flex-row mt-4">
@@ -34,7 +37,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
               setFilterDropdown((prevState) => !prevState);
             }}
           >
-            <p className="mr-4">filter by status</p>
+            <p className="mr-4">{t("FILTER_BY_STATUS")}</p>
             <Image
               src="/assets/icon-arrow-down.svg"
               className={`${
@@ -82,7 +85,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
             />
           </span>
 
-          <p>New Invoice</p>
+          <p>{t("NEW_INVOICE")}</p>
         </button>
       </div>
     </div>

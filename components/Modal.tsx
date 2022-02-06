@@ -31,9 +31,10 @@ const Modal = ({
               className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={onCancel}
             ></button>
           </div>
-          <div className="modal-body relative p-4">
+          <div className="modal-body relative p-4 !text-black !dark:text-white">
             <p>{modal_description}</p>
           </div>
           <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">

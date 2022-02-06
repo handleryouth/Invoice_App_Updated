@@ -1,8 +1,14 @@
 import { DropdownProps } from "types";
 
-const Dropdown = ({ label, option, toggleFunction, value }: DropdownProps) => {
+const Dropdown = ({
+  label,
+  option,
+  toggleFunction,
+  value,
+  className,
+}: DropdownProps) => {
   return (
-    <div className="flex flex-col my-4">
+    <div className={`flex flex-col my-4 ${className}`}>
       <label htmlFor="payment_term ">{label}</label>
       <select
         id="payment_term"

@@ -16,6 +16,6 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "apollo.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "apollo.config.js", "i18n.js"],
   "exclude": ["node_modules"]
 }

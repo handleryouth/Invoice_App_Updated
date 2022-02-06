@@ -56,10 +56,11 @@ export interface DropdownOption {
 }
 
 export interface DropdownProps {
-  label: string;
+  label?: string;
   option: DropdownOption[];
   value?: string;
   toggleFunction: (value: string) => void;
+  className?: string;
 }
 
 export type CheckTotalParams = (

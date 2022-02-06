@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Modal, Portal, StatusBadge } from "components";
 import { toggleSidebarTrue } from "features/sidebar";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -13,6 +14,7 @@ import {
 
 const DetailHeader = ({ status, id }: DetailHeaderProps) => {
   const [showModal, setShowModal] = useState(false);
+  const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
   const [updatedAsPaid] = useMutation(MARK_AS_PAID);
@@ -62,21 +64,21 @@ const DetailHeader = ({ status, id }: DetailHeaderProps) => {
             className="dark:text-white px-5 py-3 mr-4 rounded-full  dark:bg-[#252945] border-2 border-[#252945] dark:border-transparent"
             onClick={() => dispatch(toggleSidebarTrue())}
           >
-            Edit
+            {t("EDIT")}
           </button>
           {status === ("Pending" || "Draft") ? (
             <button
               className="dark:text-white  px-5 py-3 rounded-full  dark:bg-[#7c5dfa] border-2 border-[#7c5dfa] dark:border-transparent"
               onClick={handleMarkAsPaid}
             >
-              Mark as Paid
+              {t("MARK_AS_PAID")}
             </button>
           ) : (
             <button
               className="dark:text-white  px-5 py-3 rounded-full  dark:bg-[#ec5757] border-2 border-[#ec5757] dark:border-transparent"
               onClick={() => setShowModal(true)}
             >
-              Delete
+              {t("DELETE")}
             </button>
           )}
         </div>

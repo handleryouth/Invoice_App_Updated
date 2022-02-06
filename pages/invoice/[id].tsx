@@ -11,9 +11,12 @@ import { NextPage } from "next/types";
 import { QUERY_GET_SPECIFIC_INVOICE } from "utils";
 import { ResponseData } from "types";
 import omitDeep from "@typescript-runtime-schema/omit-deep";
+import useTranslation from "next-translate/useTranslation";
 
 const InvoiceDetail: NextPage = () => {
   const router = useRouter();
+
+  const { t } = useTranslation("common");
 
   const { data, loading } = useQuery(QUERY_GET_SPECIFIC_INVOICE, {
     variables: {
@@ -40,7 +43,7 @@ const InvoiceDetail: NextPage = () => {
             height={11}
             layout="fixed"
           />
-          <span className="ml-3 dark:text-white">Go Back</span>
+          <span className="ml-3 dark:text-white">{t("GO_BACK")}</span>
         </button>
 
         {loading ? (

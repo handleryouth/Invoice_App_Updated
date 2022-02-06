@@ -1,24 +1,26 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useImmer } from "use-immer";
-import addDays from "date-fns/addDays";
-import Image from "next/image";
-import Dropdown from "./Dropdown";
+import { useDispatch, useSelector } from "react-redux";
 import { format } from "date-fns";
-import Input from "./Input";
 import { CheckTotalParams, FormContainerProps, ResponseData } from "types";
-import { useMutation } from "@apollo/client";
 import {
   CREATE_INVOICE,
   QUERY_GET_ALL_INVOICES,
   QUERY_GET_SPECIFIC_INVOICE,
   UPDATE_INVOICE,
 } from "utils";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebarFalse } from "features/sidebar";
 import { RootState } from "features";
+import { toggleSidebarFalse } from "features/sidebar";
+import Image from "next/image";
+import { useMutation } from "@apollo/client";
+import addDays from "date-fns/addDays";
+import useTranslation from "next-translate/useTranslation";
+import Input from "./Input";
+import Dropdown from "./Dropdown";
 
 const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
   const [createInvoice] = useMutation(edit ? UPDATE_INVOICE : CREATE_INVOICE);
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state: RootState) => state.sidebar);
 
@@ -141,7 +143,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
         }`}
       >
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">New Invoice</h1>
+          <h1 className="text-3xl font-bold">{t("NEW_INVOICE")}</h1>
           <span
             className="text-2xl cursor-pointer"
             onClick={() => {
@@ -158,11 +160,11 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             event.preventDefault();
           }}
         >
-          <h3 className="mb-4">Bill from</h3>
+          <h3 className="mb-4">{t("BILL_FROM")}</h3>
 
           <Input
-            placeholder="Street Address"
-            label="Street Address"
+            placeholder={t("STREET_ADDRESS")}
+            label={t("STREET_ADDRESS")}
             value={inputTemplate.sender_address!.street}
             toggleFunction={(value) => {
               setInputTemplate((draft) => {
@@ -174,8 +176,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
           <div className="flex gap-x-3 w-full">
             <Input
               className="basis-1/3"
-              placeholder="City"
-              label="City"
+              placeholder={t("CITY")}
+              label={t("CITY")}
               value={inputTemplate.sender_address!.city}
               toggleFunction={(value) => {
                 setInputTemplate((draft) => {
@@ -185,8 +187,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             />
             <Input
               className="basis-1/3"
-              placeholder="Postcode"
-              label="Postcode"
+              placeholder={t("POSTCODE")}
+              label={t("POSTCODE")}
               value={inputTemplate.sender_address!.zip}
               toggleFunction={(value) => {
                 setInputTemplate((draft) => {
@@ -196,8 +198,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             />
             <Input
               className="basis-1/3"
-              placeholder="Country"
-              label="Country"
+              placeholder={t("COUNTRY")}
+              label={t("COUNTRY")}
               value={inputTemplate.sender_address!.country}
               toggleFunction={(value) => {
                 setInputTemplate((draft) => {
@@ -210,8 +212,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
           <h3 className="mt-8 mb-4">Bill to</h3>
 
           <Input
-            placeholder="Client's Name"
-            label="Name"
+            placeholder={t("CLIENT_NAME")}
+            label={t("CLIENT_NAME")}
             value={inputTemplate.bill_to}
             toggleFunction={(value) => {
               setInputTemplate((draft) => {
@@ -220,8 +222,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             }}
           />
           <Input
-            placeholder="Client's Email"
-            label="Email"
+            placeholder={t("CLIENT_EMAIL")}
+            label={t("CLIENT_EMAIL")}
             value={inputTemplate.sent_to}
             toggleFunction={(value) => {
               setInputTemplate((draft) => {
@@ -230,8 +232,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             }}
           />
           <Input
-            placeholder="Client's Street Address"
-            label="Street Address"
+            placeholder={t("CLIENT_STREET_ADDRESS")}
+            label={t("CLIENT_STREET_ADDRESS")}
             value={inputTemplate.receiver_address!.street}
             toggleFunction={(value) => {
               setInputTemplate((draft) => {
@@ -243,8 +245,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
           <div className="flex gap-x-3">
             <Input
               className="basis-1/3"
-              placeholder="City"
-              label="City"
+              placeholder={t("CITY")}
+              label={t("CITY")}
               value={inputTemplate.receiver_address!.city}
               toggleFunction={(value) => {
                 setInputTemplate((draft) => {
@@ -255,8 +257,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
 
             <Input
               className="basis-1/3"
-              placeholder="Postcode"
-              label="Postcode"
+              placeholder={t("POSTCODE")}
+              label={t("POSTCODE")}
               value={inputTemplate.receiver_address!.zip}
               toggleFunction={(value) => {
                 setInputTemplate((draft) => {
@@ -267,8 +269,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
 
             <Input
               className="basis-1/3"
-              placeholder="Country"
-              label="Country"
+              placeholder={t("COUNTRY")}
+              label={t("COUNTRY")}
               value={inputTemplate.receiver_address!.country}
               toggleFunction={(value) => {
                 setInputTemplate((draft) => {
@@ -279,8 +281,8 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
           </div>
 
           <Input
-            label="Invoice Date"
-            placeholder="Date"
+            label={t("INVOICE_DATE")}
+            placeholder={t("INVOICE_DATE")}
             defaultValue={
               inputTemplate.invoice_date &&
               format(new Date(inputTemplate.invoice_date), "yyyy-MM-dd")
@@ -292,23 +294,23 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
           />
 
           <Dropdown
-            label="Payment Terms"
+            label={t("PAYMENT_TERMS")}
             value={inputTemplate.payment_term}
             toggleFunction={(value) =>
               handlePaymentDuration("payment_terms", value)
             }
             option={[
-              { label: "Net 1 Day", value: "1" },
-              { label: "Net 7 Days", value: "7" },
-              { label: "Net 14 Days", value: "14" },
-              { label: "Net 30 Days", value: "30" },
+              { label: t("NET_DAY", { days: 1 }), value: "1" },
+              { label: t("NET_DAYS", { days: 7 }), value: "7" },
+              { label: t("NET_DAYS", { days: 14 }), value: "14" },
+              { label: t("NET_DAYS", { days: 30 }), value: "30" },
             ]}
           />
 
           <Input
-            label="Project Description"
+            placeholder={t("PROJECT_DESCRIPTION")}
+            label={t("PROJECT_DESCRIPTION")}
             value={inputTemplate.invoice_description}
-            placeholder="Project Description"
             toggleFunction={(value) => {
               setInputTemplate((draft) => {
                 draft.invoice_description = value;
@@ -316,14 +318,14 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             }}
           />
 
-          <h3 className="mt-8">Item List</h3>
+          <h3 className="mt-8">{t("ITEM_LIST")}</h3>
           <table className="w-full my-8">
             <thead>
               <tr className="text-left">
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
+                <th>{t("ITEM_NAME")}</th>
+                <th>{t("QUANTITY")}</th>
+                <th>{t("PRICE")}</th>
+                <th>{t("TOTAL")}</th>
               </tr>
             </thead>
             <tbody>
@@ -332,7 +334,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                   <tr key={index}>
                     <td className="pr-2">
                       <Input
-                        placeholder="Item Name"
+                        placeholder={t("ITEM_NAME")}
                         toggleFunction={(value) => {
                           setInputTemplate((draft) => {
                             void (draft.items![index].item_name = value);
@@ -342,7 +344,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                     </td>
                     <td className="pr-2">
                       <Input
-                        placeholder="Quantity"
+                        placeholder={t("QUANTITY")}
                         toggleFunction={(value) => {
                           setInputTemplate((draft) => {
                             void (draft.items![index].item_quantity =
@@ -358,7 +360,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                     </td>
                     <td>
                       <Input
-                        placeholder="Price"
+                        placeholder={t("PRICE")}
                         toggleFunction={(value) => {
                           setInputTemplate((draft) => {
                             void (draft.items![index].item_price =
@@ -398,7 +400,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
             </tbody>
             <tfoot>
               <tr>
-                <td>Price Total:</td>
+                <td>{t("PRICE_TOTAL")}:</td>
                 <td colSpan={4} className="text-2xl text-center py-4">
                   {inputTemplate.amount_due}
                 </td>
@@ -425,7 +427,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                       height="20px"
                       layout="fixed"
                     />
-                    <span className="ml-3">Add New Item</span>
+                    <span className="ml-3">{t("ADD_NEW_ITEM")}</span>
                   </button>
                 </td>
               </tr>
@@ -441,7 +443,7 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                 dispatch(toggleSidebarFalse());
               }}
             >
-              Discard
+              {t("DISCARD")}
             </button>
 
             <div className="flex items-center mt-4 sm:mt-0">
@@ -450,14 +452,14 @@ const FormContainer = ({ edit, _id, ...rest }: Partial<FormContainerProps>) => {
                 className="px-2 sm:px-4 py-3 dark:bg-[#373b53] border-2 border-[#373b53] dark:border-transparent rounded-full mr-3"
                 onClick={() => handleCreateInvoice("Draft")}
               >
-                Save as Draft
+                {t("SAVE_AS_DRAFT")}
               </button>
               <button
                 type="reset"
                 className="px-2 sm:px-4 py-3 dark:bg-[#7c5dfa] border-2 border-[#7c5dfa] dark:border-transparent rounded-full  "
                 onClick={() => handleCreateInvoice("Pending", _id)}
               >
-                Save & Send
+                {t("SAVE_AND_SEND")}
               </button>
             </div>
           </div>
