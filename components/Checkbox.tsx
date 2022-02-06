@@ -16,7 +16,7 @@ const Checkbox = ({ value, toggleFunction }: CheckboxProps) => {
         id="flexCheckDefault"
       />
       <label
-        className="form-check-label inline-block text-white"
+        className="form-check-label inline-block dark:text-white"
         htmlFor="flexCheckDefault"
       >
         {value}

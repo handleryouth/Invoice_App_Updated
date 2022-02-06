@@ -5,3 +5,13 @@
 body {
   font-family: "Spartan";
 }
+
+@layer components {
+  .invoice-container-info {
+    @apply hidden md:block self-center justify-self-center;
+  }
+
+  .flex-centering {
+    @apply flex justify-center items-center;
+  }
+}

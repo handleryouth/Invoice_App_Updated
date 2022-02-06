@@ -44,7 +44,7 @@ const InvoiceDetail: NextPage = () => {
         </button>
 
         {loading ? (
-          <div className="flex items-center justify-center h-screen">
+          <div className="flex-centering h-screen">
             <LoadingIndicator />
           </div>
         ) : (

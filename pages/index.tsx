@@ -39,11 +39,7 @@ const Home: NextPage = () => {
           itemLength={!data ? 0 : (data.getInvoices as ResponseData[]).length}
         />
 
-        <div
-          className={`px-4 ${
-            loading && "h-screen flex items-center justify-center"
-          }`}
-        >
+        <div className={`px-4 ${loading && "h-screen flex-centering"}`}>
           {!loading ? (
             filteredItem.map((invoice, index) => {
               return (

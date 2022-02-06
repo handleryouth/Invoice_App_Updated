@@ -48,7 +48,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
           </div>
 
           <div
-            className={`flex flex-col absolute bg-[#252945]  w-full py-4 px-8  mt-4 rounded ${
+            className={`flex flex-col absolute bg-white dark:bg-[#252945]  w-full py-4 px-8  mt-4 rounded z-10 ${
               !filterDropdown && "hidden"
             } `}
           >
