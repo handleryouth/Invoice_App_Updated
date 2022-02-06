@@ -1,16 +1,16 @@
-import { useMutation } from "@apollo/client";
-import { Modal, Portal, StatusBadge } from "components";
-import { toggleSidebarTrue } from "features/sidebar";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { DetailHeaderProps } from "types";
 import {
   DELETE_INVOICE,
   MARK_AS_PAID,
   QUERY_GET_SPECIFIC_INVOICE,
 } from "utils";
+import { Modal, Portal, StatusBadge } from "components";
+import { DetailHeaderProps } from "types";
+import { useMutation } from "@apollo/client";
+import { toggleSidebarTrue } from "features/sidebar";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 
 const DetailHeader = ({ status, id }: DetailHeaderProps) => {
   const [showModal, setShowModal] = useState(false);

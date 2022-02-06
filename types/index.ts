@@ -81,3 +81,12 @@ export interface InvoiceTitleProps {
 export interface FormContainerProps extends Omit<ResponseData, "status"> {
   edit: Boolean;
 }
+
+export interface ModalProps {
+  modal_title: string;
+  modal_description: string;
+  cancel_button_text: string;
+  confirm_button_text: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+}

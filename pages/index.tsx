@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
-import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import {
   FormContainer,
@@ -13,6 +12,7 @@ import { ResponseData } from "types";
 import { QUERY_GET_ALL_INVOICES } from "utils";
 import { RootState } from "features";
 import useTranslation from "next-translate/useTranslation";
+import { useQuery } from "@apollo/client";
 
 const Home: NextPage = () => {
   const { data, loading } = useQuery(QUERY_GET_ALL_INVOICES);

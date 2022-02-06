@@ -1,7 +1,7 @@
 import { useCallback } from "react";
+import { useTheme } from "next-themes";
 import { Dropdown } from "components";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 
 const Sidebar = () => {

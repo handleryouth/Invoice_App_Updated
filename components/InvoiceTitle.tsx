@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useTranslation from "next-translate/useTranslation";
 import { InvoiceTitleProps } from "types";
+import { RootState } from "features";
 import Image from "next/image";
 import { toggleSidebarTrue } from "features/sidebar";
-import Checkbox from "./Checkbox";
 import { handleChangeFilter, handleRemoveFilter } from "features/filter";
-import { RootState } from "features";
+import useTranslation from "next-translate/useTranslation";
+import Checkbox from "./Checkbox";
 
 const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const InvoiceTitle = ({ itemLength }: InvoiceTitleProps) => {
           </div>
 
           <div
-            className={`flex flex-col absolute bg-white dark:bg-[#252945]  w-full py-4 px-8  mt-4 rounded z-10 ${
+            className={`flex flex-col absolute border-2 border-slate-500 bg-white dark:bg-[#252945]  w-full py-4 px-8  mt-4 rounded z-10 ${
               !filterDropdown && "hidden"
             } `}
           >

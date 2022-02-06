@@ -1,7 +1,6 @@
-import { Modal, Portal } from "components";
 import { format } from "date-fns";
-import useTranslation from "next-translate/useTranslation";
 import { ResponseData } from "types";
+import useTranslation from "next-translate/useTranslation";
 
 const DetailBody = ({
   amount_due,
